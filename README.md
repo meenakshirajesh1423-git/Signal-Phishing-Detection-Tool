@@ -146,7 +146,7 @@ The tests cover phishing indicators, risk scoring, URL inspection, screenshot va
 - The training authorization checkbox is a demo safeguard, not authenticated administrator access.
 - This is an educational demonstration, not a production security solution.
 
-**Safety note:** Do not expose or port-forward the local demo server to the public internet.
+
 
 ## Project Purpose
 
@@ -154,8 +154,3 @@ Signal aims to make phishing awareness more practical by combining explainable d
 
 The goal is not only to identify suspicious messages, but also to help users understand *why* they may be suspicious and how to respond safely.
 
-## Team
-
-Developed as a hackathon project.
-
-Add your team members and contribution details here.
