@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#060912" />
+    <title>Signal / Trust, verified</title>
+    <link rel="stylesheet" href="styles.css?v=evidence-training-2" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#" aria-label="Signal home">
+          <span class="brand-mark"><span></span><span></span><span></span></span>
+          <span>signal<span class="brand-dot">.</span></span>
+        </a>
+        <div class="workspace-label">YOUR SESSION</div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-item active" data-view="analyze"><span class="nav-icon">⌕</span> Analyze message</button>
+          <button class="nav-item" data-view="training"><span class="nav-icon">◎</span> Training lab <span class="nav-tag">SAFE</span></button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="privacy-card">
+            <span class="privacy-icon">◈</span>
+            <div><strong>Private by design</strong><p>The backend stays on this computer.</p></div>
+            <span class="privacy-check">✓</span>
+          </div>
+          <div class="profile">
+            <div class="avatar" aria-hidden="true">G</div>
+            <div><strong>Guest session</strong><span>No account · This device</span></div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong id="crumb-title">Message analysis</strong></div>
+          <div class="top-actions"><span class="local-badge"><i></i> LOCAL ONLY</span><span class="ai-status" id="ai-status" role="status">Checking local AI…</span><button class="help-button" title="About this demo" aria-label="About this demo">?</button></div>
+        </header>
+
+        <section class="view active" id="view-analyze">
+          <div class="page-heading">
+            <div><div class="eyebrow"><span class="eyebrow-line"></span> THREAT INTELLIGENCE · BROWSER-BASED</div><h1>Trust, <span>verified.</span></h1><p class="page-subtitle">A second set of eyes for the messages that ask you to act fast.</p></div>
+            <div class="heading-stamp"><span class="stamp-icon">✳</span><span>INDEPENDENT<br />SIGNAL CHECK</span></div>
+          </div>
+
+          <div class="analysis-layout">
+            <div class="input-column">
+              <div class="section-top"><div><span class="step-number">01</span><h2>Choose what to check</h2></div><span class="input-hint">Processed locally; not saved</span></div>
+              <div class="analysis-mode-tabs" role="group" aria-label="What would you like to check?">
+                <button class="analysis-mode active" type="button" data-mode="email" aria-pressed="true"><span aria-hidden="true">✉</span> Email</button>
+                <button class="analysis-mode" type="button" data-mode="message" aria-pressed="false"><span aria-hidden="true">▤</span> Text message</button>
+                <button class="analysis-mode" type="button" data-mode="link" aria-pressed="false"><span aria-hidden="true">↗</span> Link</button>
+                <button class="analysis-mode" type="button" data-mode="phone" aria-pressed="false"><span aria-hidden="true">⌕</span> Phone number</button>
+              </div>
+              <div class="sample-row" id="sample-row"><span class="sample-label">TRY AN EXAMPLE</span><button class="sample-chip" data-sample="invoice">Fake invoice <span>↗</span></button><button class="sample-chip" data-sample="delivery">Delivery notice <span>↗</span></button><button class="sample-chip" data-sample="normal">Routine update <span>↗</span></button></div>
+              <div id="message-field">
+                <label class="field-label" for="message-input"><span id="message-field-label">EMAIL CONTENT</span><span id="message-field-hint">EMAIL · SENDER · REQUEST</span></label>
+                <textarea id="message-input" placeholder="Paste the email text here, including its subject and sender if available…" spellcheck="false"></textarea>
+              </div>
+              <div id="url-field" class="url-field mode-url-field"><label class="field-label" for="url-input"><span id="url-field-label">LINK IN THE EMAIL</span><span id="url-field-hint">OPTIONAL · NOT OPENED</span></label><div class="url-input-wrap"><span class="url-prefix">↗</span><input id="url-input" type="text" placeholder="Paste a URL — it will not be opened" autocomplete="off" spellcheck="false" /><span class="no-open">NOT OPENED</span></div></div>
+              <div id="phone-field" hidden>
+                <label class="field-label" for="phone-input">PHONE NUMBER OR CALLER ID <span>NO CALLS OR LOOKUPS</span></label>
+                <input class="mode-text-input" id="phone-input" type="tel" placeholder="e.g. +1 202 555 0147" autocomplete="off" />
+                <p class="mode-helper">We can check number formatting only. We cannot confirm who owns it or whether a call is genuine.</p>
+              </div>
+              <div class="field-row">
+                <button class="analyze-button" id="analyze-button"><span class="button-spark">✳</span> Analyze signals <span class="button-arrow">→</span></button>
+              </div>
+              <div class="visual-card">
+                <div class="visual-card-heading"><span class="visual-icon">▧</span><div><strong>Visual & sender clues</strong><span>Describe clues or let your local vision model inspect a screenshot</span></div><button class="disclosure" aria-expanded="false" aria-controls="visual-fields">＋</button></div>
+                <div class="visual-fields" id="visual-fields" hidden>
+                  <div class="visual-grid">
+                    <label id="sender-name-field"><span id="sender-name-label">Displayed sender name</span><input id="sender-name" placeholder="e.g. Your bank's security team" /></label>
+                    <label id="sender-domain-field"><span id="sender-domain-label">Sender email or domain</span><input id="sender-domain" placeholder="e.g. alerts@example.com" /></label>
+                    <label>Link text shown in message<input id="displayed-link" placeholder="e.g. bank.example" /></label>
+                    <label>What looked unusual?<input id="visual-clue" placeholder="e.g. logo mismatch, odd layout, QR code" /></label>
+                  </div>
+                  <label class="ai-toggle"><input id="local-ai-toggle" type="checkbox" /><span><strong>Use local AI for this analysis</strong><small>Text and any selected image are sent to Ollama running on this computer only. No cloud AI is used.</small></span></label>
+                  <label class="screenshot-label" for="screenshot-input">OPTIONAL SCREENSHOT <span>PNG, JPEG, OR WEBP · MAX 5 MB</span></label>
+                  <input id="screenshot-input" type="file" accept="image/png,image/jpeg,image/webp" />
+                  <div class="screenshot-preview" id="screenshot-preview" hidden>
+                    <img id="screenshot-thumbnail" alt="Selected screenshot preview" />
+                    <span id="screenshot-filename"></span>
+                    <button id="remove-screenshot" type="button" class="text-button">Remove image</button>
+                  </div>
+                  <p class="visual-note">Screenshots can contain sensitive information. Review and crop them before selection. The app does not save the image or open message links. Local AI is advisory and may make mistakes.</p>
+                </div>
+              </div>
+              <div class="disclaimer"><span>ⓘ</span> Rule checks are heuristic. Local AI is optional and advisory. Verify through a known, trusted channel.</div>
+            </div>
+
+            <aside class="side-column">
+              <div class="side-card analyst-card"><div class="card-eyebrow"><span class="pulse-dot"></span> HOW TO READ THE RESULT</div><h3>Pause before<br />you <em>proceed.</em></h3><div class="side-divider"></div><div class="mini-step"><span>1</span><p><strong>Check the sender</strong>Look beyond the display name.</p></div><div class="mini-step"><span>2</span><p><strong>Inspect the destination</strong>Read the domain, not just the link text.</p></div><div class="mini-step"><span>3</span><p><strong>Verify independently</strong>Use a trusted app or saved number.</p></div></div>
+              <div class="side-card stat-card"><div class="stat-top"><span class="card-eyebrow">YOUR PRIVACY</span><span class="lock-icon">⌑</span></div><div class="stat-value">0 <span>internet uploads</span></div><p>Messages, links, numbers, and selected images stay on this computer. Optional local AI sends them only to Ollama here; analysis is not saved.</p><div class="stat-foot"><span class="privacy-pip"></span> NO ACCOUNT · NO TRACKING</div></div>
+              <figure class="side-quote quote-card">
+                <div class="quote-kicker"><span>SECURITY, IN PRACTICE</span><span class="quote-spark">✳</span></div>
+                <blockquote>“Security is a process, not a product.”</blockquote>
+                <figcaption><strong>Bruce Schneier</strong><span>Security technologist &amp; author</span></figcaption>
+                <a class="quote-source" href="https://www.schneier.com/essays/archives/2000/04/the_process_of_secur.html" target="_blank" rel="noopener noreferrer">Read the original essay <span aria-hidden="true">↗</span></a>
+              </figure>
+            </aside>
+          </div>
+          <div class="results" id="analysis-results" hidden aria-live="polite"></div>
+          <footer class="page-footer"><span>BUILT FOR SAFER DECISIONS</span><span>ANALYSIS IS LOCAL · RESULTS ARE NOT GUARANTEED</span></footer>
+        </section>
+
+        <section class="view" id="view-training">
+          <div class="page-heading training-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> PRACTICE WITHOUT THE RISK</div><h1>Training <span>lab.</span></h1><p class="page-subtitle">A private, fictional scenario to practice spotting suspicious signals.</p></div><div class="training-heading-actions"><button class="secondary-button" id="training-insights-link">Practice insights <span aria-hidden="true">↓</span></button><div class="training-mark">✳<span>SIMULATED<br />SCENARIO</span></div></div></div>
+          <div class="training-layout">
+            <div class="training-main">
+              <div class="authorization-card" id="authorization-card">
+                <div class="auth-icon">⌑</div><div><strong>Start a fictional awareness campaign</strong><p>An authorized facilitator starts this local demo; the authorization checkbox is a demo confirmation, not an administrator login. Participants take a five-question baseline quiz, review a fictional inbox, then repeat the quiz. No emails are sent, real links open, or credentials and identities collected. Only combined totals are saved on this computer.</p></div>
+                <label class="auth-check"><input id="authorize-check" type="checkbox" /><span>I am authorized to use this training demo.</span></label>
+                <button class="primary-button" id="begin-training" disabled>Start campaign <span>→</span></button>
+              </div>
+              <section class="quiz-card" id="quiz-card" hidden aria-labelledby="quiz-heading">
+                <div class="scenario-top"><span class="scenario-label"><i></i> FIVE-MESSAGE AWARENESS QUIZ</span><span class="scenario-count" id="quiz-progress">BASELINE · QUESTION 1 / 5</span></div>
+                <h2 id="quiz-heading">What would you make of this message?</h2>
+                <div class="quiz-message">
+                  <div class="quiz-message-meta"><span id="quiz-sender"></span><span id="quiz-subject"></span></div>
+                  <p id="quiz-body"></p>
+                </div>
+                <div class="quiz-options" id="quiz-options" role="group" aria-label="Classify this fictional message"></div>
+                <div class="lesson-panel quiz-feedback" id="quiz-feedback" hidden aria-live="polite"></div>
+                <div class="quiz-result" id="quiz-result" hidden aria-live="polite"></div>
+                <button class="next-scenario" id="quiz-next" hidden>Continue <span>→</span></button>
+              </section>
+              <div class="scenario-card" id="scenario-card" hidden>
+                <div class="scenario-top"><span class="scenario-label"><i></i> FICTIONAL INBOX · TRAINING ONLY</span><span class="scenario-count" id="scenario-count">SCENARIO 01 / 03</span></div>
+                <div class="mail-header"><div class="mail-avatar">N</div><div><strong id="scenario-sender">Parcel Notice</strong><span id="scenario-address">updates@parcel.example</span></div><span class="mail-time">just now</span></div>
+                <div class="mail-subject" id="scenario-subject"></div>
+                <div class="mail-body" id="scenario-body"></div>
+                <div class="mock-link" id="scenario-link"><span>↗</span><span id="scenario-url"></span><span class="mock-tag">FICTIONAL · INERT SIMULATION</span></div>
+                <div class="scenario-question">What would you do with this message?</div>
+                <div class="scenario-actions"><button class="choice-button report-choice" data-choice="reported"><span>⚑</span> Report it</button><button class="choice-button unsure-choice" data-choice="ignored"><span>◌</span> Ignore it</button><button class="choice-button act-choice" data-choice="clicked"><span>↗</span> Interact with simulated link</button></div>
+                <div class="lesson-panel" id="lesson-panel" hidden></div>
+                <button class="next-scenario" id="next-scenario" hidden>Next fictional scenario <span>→</span></button>
+              </div>
+              <section class="certificate-panel" id="certificate-panel" hidden aria-labelledby="certificate-heading">
+                <div class="certificate-intro">
+                  <span class="certificate-success-icon" aria-hidden="true">✓</span>
+                  <div><span class="eyebrow"><span class="eyebrow-line"></span> PRACTICE COMPLETE</span><h2 id="certificate-heading">Nice work. You made it through.</h2><p>Your name is sent to this computer's backend to prepare the certificate. It is not saved.</p></div>
+                </div>
+                <label class="certificate-name-label" for="certificate-name">NAME ON CERTIFICATE <span>OPTIONAL</span></label>
+                <input class="certificate-name-input" id="certificate-name" type="text" maxlength="80" autocomplete="off" value="Alice" />
+                <article class="certificate-paper" id="certificate-paper" aria-label="Certificate of completion">
+                  <div class="certificate-inner">
+                    <div class="certificate-topline"><span class="certificate-brand-mark">✳</span><span>SIGNAL <i>·</i> SECURITY AWARENESS</span><span class="certificate-rosette">✳</span></div>
+                    <div class="certificate-rule"></div>
+                    <p class="certificate-overline">CERTIFICATE OF COMPLETION</p>
+                    <h3>Safer choices<br /><span>start with you.</span></h3>
+                    <p class="certificate-presented">This certificate is presented to</p>
+                    <p class="certificate-recipient" id="certificate-recipient">Training participant</p>
+                    <div class="certificate-name-rule"></div>
+                    <p class="certificate-description">For completing the Signal phishing-awareness practice and learning to pause, check the details, and verify through a trusted channel.</p>
+                    <div class="certificate-footer"><div><span>COMPLETED</span><strong id="certificate-date"></strong></div><div class="certificate-seal"><span>✳</span><small>PRACTICE<br />COMPLETE</small></div><div class="certificate-signoff"><span>KEEP LEARNING</span><strong>Think before you trust.</strong></div></div>
+                    <p class="certificate-fineprint">FICTIONAL TRAINING · COMPLETION RECOGNITION · NOT A PROFESSIONAL ACCREDITATION</p>
+                  </div>
+                </article>
+                <div class="certificate-actions"><p>Your name is sent to the local backend to make the PDF, then it downloads through your browser. The backend does not save it.</p><div><button class="secondary-button" id="certificate-insights">View practice insights</button><button class="primary-button" id="download-certificate"><span>↓</span> Download certificate PDF</button></div></div>
+              </section>
+            </div>
+            <aside class="training-aside"><div class="side-card"><div class="card-eyebrow">A SAFE SPACE TO PRACTICE</div><div class="safe-list"><p><span>✓</span> No real messages or recipients</p><p><span>✓</span> No links that navigate anywhere</p><p><span>✓</span> No credential collection, ever</p><p><span>✓</span> Anonymous, aggregate-only tally</p></div><div class="side-divider"></div><p class="training-aside-note">Practice is for learning, not for blaming. Only anonymous totals are saved on this computer.</p></div><div class="side-quote"><span>“</span><p>When in doubt, don't engage. Find the organization through a channel you already trust.</p></div></aside>
+          </div>
+          <section class="training-insights" id="training-insights" aria-labelledby="training-insights-heading">
+            <div class="training-insights-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> LEARN, DON'T SURVEIL</div><h2 id="training-insights-heading">Practice <span>insights.</span></h2><p class="page-subtitle">Aggregate activity from this device. These local totals are demo data, not organization-wide results.</p></div><span class="local-badge"><i></i> THIS DEVICE ONLY</span></div>
+            <div class="insight-banner"><span>◈</span><div><strong>Privacy first, by default.</strong><p>Only anonymous combined totals are stored here. No names, emails, devices, or individual response histories are collected.</p></div></div>
+            <div class="dashboard-grid">
+              <article class="metric-card"><span class="metric-label">MESSAGES ANALYZED</span><strong id="metric-analyzed">0</strong><span class="metric-note">Email and text checks on this device</span></article>
+              <article class="metric-card"><span class="metric-label">SIMULATED LINKS CLICKED</span><strong id="metric-clicked">0</strong><span class="metric-note">Fictional, inert training choices only</span></article>
+              <article class="metric-card"><span class="metric-label">MESSAGES REPORTED</span><strong id="metric-reported">0</strong><span class="metric-note">Anonymous practice choices</span></article>
+              <article class="metric-card"><span class="metric-label">TRAINING COMPLETION</span><strong id="metric-completion">—</strong><span class="metric-note" id="metric-completion-note">No campaign started yet</span></article>
+            </div>
+            <div class="insight-card">
+              <div class="insight-card-head"><div><span class="card-eyebrow">LEARNING CHECK</span><h3>Initial quiz vs. after training</h3></div><span class="snapshot-icon" aria-hidden="true">✳</span></div>
+              <div class="snapshot-body">
+                <div class="snapshot-chart" role="img" aria-label="Practice response breakdown">
+                  <div class="snapshot-chart-row"><div class="snapshot-chart-label"><span><i class="chart-dot reported-dot"></i>Before training · average score</span><strong id="chart-pre-value">—</strong></div><div class="snapshot-track"><div id="chart-pre-bar" class="chart-reported"></div></div></div>
+                  <div class="snapshot-chart-row"><div class="snapshot-chart-label"><span><i class="chart-dot nudge-dot"></i>After training · average score</span><strong id="chart-post-value">—</strong></div><div class="snapshot-track"><div id="chart-post-bar" class="chart-nudge"></div></div></div>
+                </div>
+                <div class="snapshot-summary"><strong id="snapshot-change">—</strong><p id="snapshot-message">No quiz results yet. Start a campaign to collect baseline and post-training scores.</p></div>
+              </div>
+            </div>
+            <section class="reading-card" aria-labelledby="reading-heading">
+              <div class="insight-card-head"><div><span class="card-eyebrow">KEEP LEARNING</span><h3 id="reading-heading">Trusted security-awareness reading</h3></div><span class="snapshot-icon" aria-hidden="true">↗</span></div>
+              <div class="reading-list">
+                <a class="reading-link" href="https://www.cisa.gov/secure-our-world/recognize-and-report-phishing" target="_blank" rel="noopener noreferrer"><span class="reading-icon">01</span><span><strong>Recognize and report phishing</strong><small>CISA · Practical warning signs and safer responses</small></span><span class="reading-arrow" aria-hidden="true">↗</span></a>
+                <a class="reading-link" href="https://csrc.nist.gov/pubs/sp/800/50/r1/final" target="_blank" rel="noopener noreferrer"><span class="reading-icon">02</span><span><strong>Building a Cybersecurity and Privacy Learning Program</strong><small>NIST SP 800-50 Rev. 1 · Program design, behavior change, and evaluation</small></span><span class="reading-arrow" aria-hidden="true">↗</span></a>
+              </div>
+            </section>
+            <div class="insights-footer"><span>Totals stay on this computer. Quiz comparisons are aggregate, not individually paired or proof of causation.</span><button id="reset-insights" class="reset-button">Clear local dashboard totals</button></div>
+          </section>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js?v=evidence-training-3"></script>
+  </body>
+</html>
